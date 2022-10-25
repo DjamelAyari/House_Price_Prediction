@@ -1,0 +1,22 @@
+House Price Prediciton
+
+Use SGD Regressor / SVR / Bagging / Boosting / Stacking
+
+numeric_col = [i for i in corr.index[1:] if i not in col_to_be_removed]
+categorical_col = [i for i in df.columns[:-1] if i not in numeric_col]
+df.select_dtypes(exclude=["number","bool_","object_"])
+
+# Label Encoding those columns
+for col in categorical_col:
+    df[col] = LabelEncoder().fit_transform(df[col])
+
+df[numeric_col] = StandardScaler().fit_transform(df[numeric_col])
+
+After the code above we can split x and y  and then do a train / test split
+
+ATTENTION No modification on the target value !!!
+
+
+https://www.kaggle.com/code/soumighosh99/house-prices-89-score-with-xgboost
+
+Apply the model on test set via joblib
